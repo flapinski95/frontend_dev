@@ -1,0 +1,119 @@
+@charset "UTF-8";
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+  background-color: beige; /* Przyjazne dla oka tło */
+}
+
+header {
+  background-color: #38322d;
+  height: 5rem;
+  display: flex;
+  justify-content: center; /* Równomierne rozmieszczenie */
+  align-items: center;
+  padding: 0 2rem; /* Dodatkowe odstępy po bokach */
+}
+
+.searchbar {
+  background-color: white;
+  border: 1px solid #ddd;
+  border-radius: 1rem;
+  padding: 0.5rem 1rem; /* Wygodniejsza wysokość */
+  width: 100%; /* Dynamiczna szerokość */
+  max-width: 1000px; /* Ograniczenie dla większych ekranów */
+}
+
+.boxes {
+  display: flex; /* Ustawienie elastycznego kontenera */
+  justify-content: space-between; /* Równomierne rozmieszczenie dzieci */
+  align-items: flex-start; /* Wyrównanie do góry */
+  gap: 1rem; /* Odstępy między elementami */
+  margin: 2rem auto; /* Odstępy wokół sekcji */
+  max-width: 90%;
+  /* Maksymalna szerokość kontenera */
+}
+
+#list,
+#traits {
+  background-color: #38322d;
+  flex: 1; /* Każdy element zajmuje równą przestrzeń */
+  min-width: 45%; /* Minimalna szerokość dla responsywności */
+  border-radius: 2rem;
+  height: auto; /* Dynamiczna wysokość */
+  overflow-y: auto; /* Przewijanie dla dużej ilości treści */
+  box-shadow: 1rem 1rem 1rem rgba(131, 125, 125, 0.1);
+}
+
+#list {
+  margin-right: 0.5rem; /* Dodatkowy odstęp na prawo */
+}
+
+#traits {
+  margin-right: 0.5rem; /* Dodatkowy odstęp na lewo */
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  padding: 1rem;
+}
+
+/* Dodanie responsywności */
+@media (max-width: 768px) {
+  .boxes {
+    flex-direction: column; /* Układ pionowy na małych ekranach */
+  }
+  #list,
+  #traits {
+    min-width: 100%; /* Pełna szerokość w układzie pionowym */
+    margin: 0;
+  }
+}
+.poke-data {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  margin: 1px;
+  font-weight: bolder;
+  text-transform: uppercase;
+  font-size: 2rem;
+  color: white;
+  gap: 5rem;
+  padding-left: 1rem;
+}
+
+span {
+  flex: 2;
+}
+
+img {
+  flex: 1;
+}
+
+.poke-data:hover {
+  background-color: #604f41;
+}
+
+.poke-stats {
+  margin: 1px;
+  color: white;
+  padding-bottom: 1rem;
+}
+
+h2 {
+  color: white;
+  text-transform: uppercase;
+}
+
+#traits {
+  animation: fadeIn 0.5s ease-in-out;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}/*# sourceMappingURL=style.css.map */
