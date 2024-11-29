@@ -1,70 +1,97 @@
 @charset "UTF-8";
+@import url("https://fonts.googleapis.com/css2?family=Funnel+Display:wght@300..800&display=swap");
 body {
   margin: 0;
-  font-family: Arial, sans-serif;
-  background-color: beige; /* Przyjazne dla oka tło */
+  font-family: "Funnel Display", sans-serif;
+  font-optical-sizing: auto;
+  font-weight: 600;
+  font-style: normal;
+  /* background-color: #fde5d4; */
+  background-color: #719778;
+  -webkit-font-smoothing: antialiased;
+  text-shadow: 2px 2px 0 #000, 4px 4px 0 #555;
 }
 
 header {
-  background-color: #38322d;
+  background-color: #445d48;
+  box-shadow: 0 0 5px 5px #2d3d30;
   height: 5rem;
   display: flex;
-  justify-content: center; /* Równomierne rozmieszczenie */
+  justify-content: center;
   align-items: center;
-  padding: 0 2rem; /* Dodatkowe odstępy po bokach */
+  padding: 0 2rem;
 }
 
 .searchbar {
-  background-color: white;
-  border: 1px solid #ddd;
+  background-color: #719778;
+  height: 25%;
+  color: white;
+  border: none;
   border-radius: 1rem;
-  padding: 0.5rem 1rem; /* Wygodniejsza wysokość */
-  width: 100%; /* Dynamiczna szerokość */
-  max-width: 1000px; /* Ograniczenie dla większych ekranów */
+  padding: 0.5rem 1rem;
+  width: 100%;
+  max-width: 1000px;
+  box-shadow: 5px 5px 5px 5px #3e5542;
+  outline: none;
+}
+.searchbar::placeholder {
+  color: white;
 }
 
 .boxes {
-  display: flex; /* Ustawienie elastycznego kontenera */
-  justify-content: space-between; /* Równomierne rozmieszczenie dzieci */
-  align-items: flex-start; /* Wyrównanie do góry */
-  gap: 1rem; /* Odstępy między elementami */
-  margin: 2rem auto; /* Odstępy wokół sekcji */
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 1rem;
+  margin: 2rem auto;
   max-width: 90%;
-  /* Maksymalna szerokość kontenera */
 }
 
 #list,
 #traits {
-  background-color: #38322d;
-  flex: 1; /* Każdy element zajmuje równą przestrzeń */
-  min-width: 45%; /* Minimalna szerokość dla responsywności */
+  background-color: #445d48;
+  flex: 1;
+  min-width: 45%;
   border-radius: 2rem;
-  height: auto; /* Dynamiczna wysokość */
-  overflow-y: auto; /* Przewijanie dla dużej ilości treści */
-  box-shadow: 1rem 1rem 1rem rgba(131, 125, 125, 0.1);
+  height: auto;
+  overflow-y: auto;
+  box-shadow: 0 0 5px 5px #2d3d30;
 }
 
 #list {
-  margin-right: 0.5rem; /* Dodatkowy odstęp na prawo */
+  background-color: #445d48;
+  flex: 1;
+  min-width: 45%;
+  border-radius: 2rem;
+  height: 72rem;
+  overflow-y: auto;
+  margin-right: 0.5rem;
+}
+
+#list::-webkit-scrollbar {
+  display: none;
 }
 
 #traits {
-  margin-right: 0.5rem; /* Dodatkowy odstęp na lewo */
+  margin-right: 0.5rem;
   display: flex;
   flex-direction: column;
   justify-content: space-around;
   padding: 1rem;
+  padding-left: 2rem;
 }
 
-/* Dodanie responsywności */
 @media (max-width: 768px) {
   .boxes {
-    flex-direction: column; /* Układ pionowy na małych ekranach */
+    flex-direction: column;
   }
   #list,
   #traits {
-    min-width: 100%; /* Pełna szerokość w układzie pionowym */
+    min-width: 100%;
     margin: 0;
+  }
+  #list {
+    max-height: 40rem;
   }
 }
 .poke-data {
@@ -85,11 +112,20 @@ span {
 }
 
 img {
+  image-rendering: auto;
+  -webkit-backface-visibility: hidden;
+  backface-visibility: hidden;
+  display: block;
+  max-width: 100%;
+  height: auto;
   flex: 1;
+  image-rendering: crisp-edges;
+  image-rendering: pixelated;
 }
 
 .poke-data:hover {
-  background-color: #604f41;
+  background-color: #2d3d30;
+  cursor: pointer;
 }
 
 .poke-stats {
@@ -107,13 +143,4 @@ h2 {
   animation: fadeIn 0.5s ease-in-out;
 }
 
-@keyframes fadeIn {
-  from {
-    opacity: 0;
-    transform: translateY(-10px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}/*# sourceMappingURL=style.css.map */
+/*# sourceMappingURL=style.css.map */

@@ -33,37 +33,35 @@ function displayDataList(data) {
   displayContainer.innerHTML = "";
 
   data.map((obj, index) => {
-    const pokemonId = index + 1; // ID Pokémonów (1, 2, 3...)
+    const pokemonId = index + 1; //
     const spriteUrl = `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/shiny/${pokemonId}.png`;
 
     const dataItem = document.createElement("div");
     dataItem.classList.add("poke-data");
 
     const image = document.createElement("img");
-    image.src = spriteUrl; // Dodaj URL obrazka
+    image.src = spriteUrl;
     image.alt = `Shiny sprite of ${obj.name}`;
-    image.style.width = "50px"; // Opcjonalnie: rozmiar obrazka
+    image.style.width = "50px";
 
     const text = document.createElement("span");
     text.textContent = ` ${pokemonId}. ${obj.name}`;
-    dataItem.appendChild(image); // Dodaj obrazek do elementu
-    dataItem.appendChild(text); // Dodaj nazwę Pokémon do elementu
+    dataItem.appendChild(image);
+    dataItem.appendChild(text);
 
-    dataItem.addEventListener("click", () => getDataPoke(obj.name)); // Pobierz szczegóły po kliknięciu
+    dataItem.addEventListener("click", () => getDataPoke(obj.name));
     displayContainer.appendChild(dataItem);
   });
 }
 
 function displayDataPoke(data) {
   const displayContainer = document.getElementById("traits");
-  displayContainer.innerHTML = ""; // Czyszczenie kontenera
+  displayContainer.innerHTML = "";
 
-  // Wyświetlenie nazwy Pokémona
   const name = document.createElement("h2");
   name.textContent = `Name: ${data.name}`;
   displayContainer.appendChild(name);
 
-  // Wyświetlenie typów
   const typesContainer = document.createElement("div");
   typesContainer.classList.add("poke-stats");
   typesContainer.innerHTML = "<h3>Types:</h3>";
@@ -75,7 +73,6 @@ function displayDataPoke(data) {
   });
   displayContainer.appendChild(typesContainer);
 
-  // Wyświetlenie podstawowych statystyk
   const statsContainer = document.createElement("div");
   statsContainer.classList.add("poke-stats");
 
@@ -87,7 +84,6 @@ function displayDataPoke(data) {
   });
   displayContainer.appendChild(statsContainer);
 
-  // Wyświetlenie wzrostu i wagi
   const physicalAttributes = document.createElement("div");
   physicalAttributes.innerHTML = `
       <h3>Physical Attributes:</h3>
