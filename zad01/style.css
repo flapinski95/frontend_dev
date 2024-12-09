@@ -1,0 +1,178 @@
+@charset "UTF-8";
+@import url("https://fonts.googleapis.com/css2?family=Funnel+Display:wght@300..800&display=swap");
+body {
+  margin: 0;
+  font-family: "Funnel Display", sans-serif;
+  font-optical-sizing: auto;
+  font-weight: 600;
+  font-style: normal;
+  /* background-color: #fde5d4; */
+  background-color: #719778;
+  -webkit-font-smoothing: antialiased;
+  text-shadow: 2px 2px 0 #000, 4px 4px 0 #555;
+}
+
+header {
+  background-color: #445d48;
+  box-shadow: 0 0 5px 5px #2d3d30;
+  height: 5rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 0 2rem;
+}
+
+.searchbar {
+  background-color: #719778;
+  height: 25%;
+  color: white;
+  border: none;
+  border-radius: 1rem;
+  padding: 0.5rem 1rem;
+  width: 100%;
+  max-width: 1000px;
+  box-shadow: 5px 5px 5px 5px #3e5542;
+  outline: none;
+}
+.searchbar::placeholder {
+  color: white;
+}
+
+.boxes {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 1rem;
+  margin: 2rem auto;
+  max-width: 90%;
+}
+
+#list,
+#traits {
+  background-color: #445d48;
+  flex: 1;
+  min-width: 45%;
+  border-radius: 2rem;
+  height: auto;
+  overflow-y: auto;
+  box-shadow: 0 0 5px 5px #2d3d30;
+}
+
+#list {
+  background-color: #445d48;
+  flex: 1;
+  min-width: 45%;
+  border-radius: 2rem;
+  height: 72rem;
+  overflow-y: auto;
+  margin-right: 0.5rem;
+}
+
+#list::-webkit-scrollbar {
+  display: none;
+}
+
+#traits {
+  margin-right: 0.5rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  padding: 1rem;
+  padding-left: 2rem;
+}
+
+@media (max-width: 768px) {
+  .boxes {
+    flex-direction: column;
+  }
+  #list,
+  #traits {
+    min-width: 100%;
+    margin: 0;
+  }
+  #list {
+    max-height: 40rem;
+  }
+}
+.poke-data {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  margin: 1px;
+  font-weight: bolder;
+  text-transform: uppercase;
+  font-size: 2rem;
+  color: white;
+  gap: 5rem;
+  padding-left: 1rem;
+}
+
+span {
+  flex: 2;
+}
+
+img {
+  image-rendering: auto;
+  -webkit-backface-visibility: hidden;
+  backface-visibility: hidden;
+  display: block;
+  max-width: 100%;
+  height: auto;
+  flex: 1;
+  image-rendering: crisp-edges;
+  image-rendering: pixelated;
+}
+
+.poke-data:hover {
+  background-color: #2d3d30;
+  cursor: pointer;
+}
+
+.poke-stats {
+  margin: 1px;
+  color: white;
+  padding-bottom: 1rem;
+}
+
+h2 {
+  color: white;
+  text-transform: uppercase;
+}
+
+#traits {
+  animation: fadeIn 0.5s ease-in-out;
+}
+@media (max-width: 100rem) {
+  body {
+    background-color: #5d7a65;
+    font-size: 0.95rem;
+  }
+
+  .boxes {
+    gap: 1rem;
+    justify-content: space-around;
+  }
+
+  #list,
+  #traits {
+    min-width: 48%;
+    margin: 0;
+  }
+
+  #list {
+    max-height: 39rem;
+    overflow-y: auto;
+  }
+
+  .poke-data {
+    font-size: 1.5rem;
+    gap: 2rem;
+  }
+
+  img {
+    max-width: 100%;
+    height: auto;
+  }
+}
+
+/*# sourceMappingURL=style.css.map */

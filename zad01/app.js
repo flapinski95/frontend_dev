@@ -49,7 +49,8 @@ function displayDataList(data) {
     dataItem.appendChild(image);
     dataItem.appendChild(text);
 
-    dataItem.addEventListener("click", () => getDataPoke(obj.name));
+    dataItem.onclick = () => getDataPoke(obj.name);
+
     displayContainer.appendChild(dataItem);
   });
 }
