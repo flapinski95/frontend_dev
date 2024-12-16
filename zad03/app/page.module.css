@@ -1,0 +1,174 @@
+.body {
+  margin: 0;
+  font-family: "Funnel Display", sans-serif;
+  font-optical-sizing: auto;
+  font-weight: 600;
+  font-style: normal;
+  background-color: #719778;
+  -webkit-font-smoothing: antialiased;
+  text-shadow: 2px 2px 0 #000, 4px 4px 0 #555;
+}
+
+.img {
+  max-width: 100%;
+  height: auto;
+  flex: 1;
+  image-rendering: crisp-edges;
+  image-rendering: pixelated;
+}
+.page {
+  margin: 0;
+  font-family: "Funnel Display", sans-serif;
+  font-optical-sizing: auto;
+  font-weight: 600;
+  font-style: normal;
+  background-color: #719778;
+  -webkit-font-smoothing: antialiased;
+  /* text-shadow: 2px 2px 0 #000, 4px 4px 0 #555; */
+}
+
+.p {
+  color: white;
+  text-transform: uppercase;
+}
+
+.header {
+  background-color: #445d48;
+  box-shadow: 0 0 5px 5px #2d3d30;
+  height: 5rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 0 2rem;
+  position: fixed;
+  width: 100%;
+  top: 0;
+  left: 0;
+  z-index: 10;
+}
+.boxes {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 1rem;
+  margin: 8rem auto 2rem;
+  width: 95%; /* Poprawiono */
+}
+
+.main {
+  display: flex;
+  flex-direction: column;
+  gap: 32px;
+  grid-row-start: 2;
+}
+
+.searchquery {
+  font-size: 1rem;
+  color: white;
+  padding-left: 2rem;
+}
+
+.searchbar {
+  background-color: #719778;
+  height: 40%;
+  color: white;
+  border: none;
+  border-radius: 1rem;
+  padding: 0.5rem 1rem;
+  width: 100%;
+  max-width: 1000px;
+  box-shadow: 2px 2px 5px #3e5542; /* Zmniejszono cień */
+  outline: none;
+}
+
+.searchbar::placeholder {
+  color: white;
+}
+
+.list,
+.traits {
+  background-color: #445d48;
+  flex: 1;
+  border-radius: 2rem;
+  margin-right: 0.5rem;
+  box-shadow: 0 0 5px #2d3d30;
+  overflow-y: auto;
+}
+.list::-webkit-scrollbar {
+  display: none;
+}
+
+.traits::-webkit-scrollbar {
+  display: none;
+}
+
+.list {
+  max-height: 72rem;
+}
+
+.traits {
+  padding: 1rem 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  animation: fadeIn 0.5s ease-in-out;
+  font-weight: bolder;
+  font-size: 1.5rem;
+  color: white;
+}
+
+.poke_data {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  margin: 1px;
+  font-weight: bolder;
+  text-transform: uppercase;
+  font-size: 2rem;
+  color: white;
+  gap: 5rem;
+  padding-left: 1rem;
+}
+
+.poke_data:hover {
+  background-color: #2d3d30;
+  cursor: pointer;
+}
+
+.poke_stats {
+  margin: 1px;
+  color: white;
+  padding-bottom: 1rem;
+}
+
+@media (max-width: 768px) {
+  .boxes {
+    flex-direction: column;
+  }
+
+  .list,
+  .traits {
+    width: 100%; /* Zmiana na bardziej czytelne */
+    margin: 0;
+    max-height: 40rem;
+  }
+}
+
+@media (max-width: 100rem) {
+  .boxes {
+    gap: 1rem;
+    justify-content: space-around;
+  }
+
+  .list,
+  .traits {
+    width: 48%; /* Zmiana na bardziej czytelne */
+    margin: 0;
+    max-height: 39rem;
+  }
+
+  .poke_data {
+    font-size: 1.5rem;
+    gap: 2rem;
+  }
+}
