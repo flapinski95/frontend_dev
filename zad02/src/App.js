@@ -1,23 +1,17 @@
-import React from "react";
-import ReactDOM from "react-dom/client";
-
-// Globalne zmienne do przechowywania stanu
 let pokemonList = [];
 let selectedPokemon = null;
+let searchQuery = "";
 
-// Funkcja do ustawienia wybranych szczegółów Pokémona
 function setSelectedPokemon(pokemon) {
   selectedPokemon = pokemon;
-  renderApp(); // Przeładuj widok po zmianie stanu
+  renderApp();
 }
 
-// Funkcja do ustawienia listy Pokémonów
 function setPokemonList(list) {
   pokemonList = list;
-  renderApp(); // Przeładuj widok po zmianie stanu
+  renderApp();
 }
 
-// Pobranie listy Pokémonów
 async function fetchDataList() {
   const url = "https://pokeapi.co/api/v2/pokemon";
   try {
@@ -32,7 +26,6 @@ async function fetchDataList() {
   }
 }
 
-// Pobranie szczegółów Pokémona
 async function fetchPokemonDetails(name) {
   const url = `https://pokeapi.co/api/v2/pokemon/${name}`;
   try {
@@ -47,7 +40,12 @@ async function fetchPokemonDetails(name) {
   }
 }
 
-// Komponent listy Pokémonów
+function renderApp(pokemonList) {
+  const root = document.getElementById("root");
+  const reactRoot = ReactDOM.createRoot(root);
+  reactRoot.render(<App data={pokemonList} />);
+}
+
 const PokemonList = ({ pokemons, onPokemonClick }) => {
   return (
     <div id="list">
@@ -74,7 +72,6 @@ const PokemonList = ({ pokemons, onPokemonClick }) => {
   );
 };
 
-// Komponent szczegółów Pokémona
 const PokemonDetails = ({ pokemon }) => {
   if (!pokemon) {
     return <div id="traits">Select a Pokémon to see details</div>;
@@ -108,30 +105,43 @@ const PokemonDetails = ({ pokemon }) => {
   );
 };
 
-// Główny komponent App
 const App = () => {
-  // Jeśli lista Pokémonów jest pusta, to pobieramy dane
   if (pokemonList.length === 0) {
-    fetchDataList(); // Pobierz dane, jeśli lista jest pusta
+    fetchDataList();
   }
 
+  const filteredPokemonList = pokemonList.filter((pokemon) =>
+    pokemon.name.toLowerCase().includes(searchQuery.toLowerCase())
+  );
+
   return (
-    <div className="boxes">
-      <PokemonList
-        pokemons={pokemonList}
-        onPokemonClick={fetchPokemonDetails}
-      />
-      <PokemonDetails pokemon={selectedPokemon} />
+    <div>
+      <header>
+        <input
+          type="text"
+          placeholder="Search..."
+          className="searchbar"
+          value={searchQuery}
+          onInput={(e) => {
+            searchQuery = e.target.value;
+            renderApp();
+          }}
+        />
+        <p className="searchquery">
+          Searching for: {searchQuery || "Nothing yet"}
+        </p>
+      </header>
+      <div className="boxes">
+        <PokemonList
+          pokemons={filteredPokemonList}
+          onPokemonClick={fetchPokemonDetails}
+        />
+        <PokemonDetails pokemon={selectedPokemon} />
+      </div>
     </div>
   );
 };
 
-// Funkcja do renderowania aplikacji
-function renderApp() {
-  const root = document.getElementById("root");
-  const reactRoot = ReactDOM.createRoot(root); // Tworzymy root z ReactDOM.createRoot
-  reactRoot.render(<App />); // Renderujemy aplikację
-}
+renderApp();
 
-// Start aplikacji
-renderApp(); // Uruchomienie aplikacji po załadowaniu danych
+export default App;
