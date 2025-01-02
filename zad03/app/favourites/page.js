@@ -2,10 +2,14 @@
 
 import { useState, useEffect } from "react";
 import styles from "../page.module.css";
-import Button from "../../components/button";
+import Header from "@/components/header";
+import { PokemonList } from "@/components/display_Poke";
+import { useSearchParams, useRouter } from "next/navigation";
 
 export default function Favourites() {
   const [favourites, setFavourites] = useState([]);
+
+  const router = useRouter();
 
   useEffect(() => {
     const savedFavourites =
@@ -13,36 +17,62 @@ export default function Favourites() {
     setFavourites(savedFavourites);
   }, []);
 
+  const updateUrl = (key, value) => {
+    const params = new URLSearchParams(searchParams);
+    if (value) {
+      params.set(key, value);
+    } else {
+      params.delete(key);
+    }
+    router.push(`?${params.toString()}`);
+  };
   const removeFavourite = (nameToRemove) => {
     const updatedFavourites = favourites.filter(
-      (name) => name !== nameToRemove
+      (pokemon) => pokemon.name !== nameToRemove.name
     );
     setFavourites(updatedFavourites);
     localStorage.setItem("favourites", JSON.stringify(updatedFavourites)); // Zaktualizowanie localStorage
   };
+  const handlePokemonClick = (name) => {
+    router.push(`/pokemon/${name}`);
+  };
+  const toggleFavourite = (pokemon) => {
+    // Sprawdzenie, czy Pokémon już jest w ulubionych
+    const updatedFavourites = favourites.some(
+      (fav) => fav.name === pokemon.name
+    )
+      ? favourites.filter((fav) => fav.name !== pokemon.name) // Usuwanie z ulubionych
+      : [...favourites, pokemon]; // Dodawanie do ulubionych
 
+    setFavourites(updatedFavourites);
+    localStorage.setItem("favourites", JSON.stringify(updatedFavourites)); // Zaktualizowanie localStorage
+  };
+  const handleSearch = (query) => {
+    updateUrl("search", query);
+  };
+
+  // Obsługa zmiany filtra typu Pokémonów
+  const handleFilterChange = (type) => {
+    updateUrl("type", type);
+  };
+
+  // Obsługa zmiany limitu wyników
+  const handleLimitChange = (newLimit) => {
+    updateUrl("limit", newLimit);
+  };
   return (
     <div className={styles.page}>
-      <h1 className={styles.p}>Favourite Pokémon</h1>
-      <div className={styles.with_margin}>
-        {favourites.length > 0 ? (
-          favourites.map((name, index) => (
-            <div key={index} className={styles.list}>
-              <div className={styles.poke_data}>
-                <p>{name.name}</p>
-                <button
-                  onClick={() => removeFavourite(name)}
-                  className={styles.button}
-                >
-                  Remove
-                </button>
-              </div>
-            </div>
-          ))
-        ) : (
-          <p className={styles.p}>No favourites added yet.</p>
-        )}
-      </div>
+      <Header
+        onSearch={handleSearch}
+        onFilterChange={handleFilterChange}
+        onLimitChange={handleLimitChange}
+      />
+      <PokemonList
+        pokemons={favourites}
+        onPokemonClick={handlePokemonClick}
+        toggleFavourite={toggleFavourite}
+        favourites={favourites}
+      />
     </div>
   );
 }

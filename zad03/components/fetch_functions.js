@@ -9,7 +9,14 @@ async function fetchDataList(limit = 50, type = "") {
       throw new Error(`Response status: ${response.status}`);
     }
     const json = await response.json();
-    return json.results || []; // Zwracamy listę Pokémonów
+
+    if (type) {
+      // Przetwarzanie danych dla filtrowania po typach
+      return json.pokemon.map((entry) => entry.pokemon); // Zwracamy listę `{ name, url }`
+    } else {
+      // Przetwarzanie danych dla wszystkich Pokémonów
+      return json.results || []; // Zwracamy listę `{ name, url }`
+    }
   } catch (error) {
     console.error(`Błąd API: ${error.message}`);
     return []; // Zwracamy pustą listę, jeśli wystąpił błąd

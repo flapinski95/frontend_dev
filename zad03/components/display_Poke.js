@@ -1,6 +1,11 @@
 import styles from "../app/page.module.css";
 
-const PokemonList = ({ pokemons, onPokemonClick }) => {
+const PokemonList = ({
+  pokemons,
+  onPokemonClick,
+  favourites,
+  toggleFavourite,
+}) => {
   const addToFavourites = (pokemon) => {
     const favourites = JSON.parse(localStorage.getItem("favourites")) || [];
     if (!favourites.some((fav) => fav.name === pokemon.name)) {
@@ -15,7 +20,10 @@ const PokemonList = ({ pokemons, onPokemonClick }) => {
         <div
           key={index}
           className={styles.poke_data}
-          onClick={() => onPokemonClick(pokemon.name)}
+          onClick={(e) => {
+            e.stopPropagation(); // Zapobiega propagacji kliknięcia
+            onPokemonClick(pokemon.name);
+          }}
         >
           <img
             src={`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/shiny/${
@@ -29,10 +37,19 @@ const PokemonList = ({ pokemons, onPokemonClick }) => {
             {index + 1}. {pokemon.name}
           </span>
           <button
-            onClick={() => addToFavourites(pokemon)}
-            className={styles.button}
+            onClick={(e) => {
+              e.stopPropagation(); // Zapobiega uruchomieniu `onPokemonClick`
+              toggleFavourite(pokemon);
+            }}
+            className={
+              favourites.some((fav) => fav.name === pokemon.name)
+                ? styles.fav
+                : styles.button
+            }
           >
-            Add to Favourites
+            {favourites.some((fav) => fav.name === pokemon.name)
+              ? "Remove from Favourites"
+              : "Add to Favourites"}
           </button>
         </div>
       ))}

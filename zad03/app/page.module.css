@@ -37,7 +37,7 @@
   box-shadow: 0 0 5px 5px #2d3d30;
   height: 5rem;
   display: flex;
-  justify-content: center;
+  justify-content: space-around;
   align-items: center;
   padding: 0 2rem;
   position: fixed;
@@ -224,4 +224,21 @@
 
 .use_marging {
   margin: 1rem;
+}
+
+.select {
+  border-radius: 1rem;
+  height: 2rem;
+  width: 5rem;
+  justify-content: center;
+  align-items: center;
+}
+.select_boxes {
+  display: flex;
+  align-items: center;
+  gap: 2rem;
+}
+
+.with_margin {
+  margin-top: 6rem;
 }
