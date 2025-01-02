@@ -1,15 +1,18 @@
-async function fetchDataList(limit = 50) {
-  const url = `https://pokeapi.co/api/v2/pokemon?limit=${limit}`;
+async function fetchDataList(limit = 50, type = "") {
+  const url = type
+    ? `https://pokeapi.co/api/v2/type/${type}` // Jeśli typ jest ustawiony, pobieraj Pokémony według typu
+    : `https://pokeapi.co/api/v2/pokemon?limit=${limit}`; // Jeśli typ nie jest ustawiony, pobieraj wszystkie Pokémony
+
   try {
     const response = await fetch(url);
     if (!response.ok) {
       throw new Error(`Response status: ${response.status}`);
     }
     const json = await response.json();
-    return json.results;
+    return json.results || []; // Zwracamy listę Pokémonów
   } catch (error) {
-    console.error(error.message);
-    return [];
+    console.error(`Błąd API: ${error.message}`);
+    return []; // Zwracamy pustą listę, jeśli wystąpił błąd
   }
 }
 

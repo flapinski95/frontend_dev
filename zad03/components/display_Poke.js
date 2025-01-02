@@ -1,4 +1,4 @@
-import styles from "./page.module.css";
+import styles from "../app/page.module.css";
 
 const PokemonList = ({ pokemons, onPokemonClick }) => {
   const addToFavourites = (pokemon) => {
@@ -19,7 +19,7 @@ const PokemonList = ({ pokemons, onPokemonClick }) => {
         >
           <img
             src={`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/shiny/${
-              index + 1
+              pokemon.url.split("/")[6]
             }.png`}
             alt={pokemon.name}
             style={{ width: "50px" }}
@@ -28,7 +28,10 @@ const PokemonList = ({ pokemons, onPokemonClick }) => {
           <span>
             {index + 1}. {pokemon.name}
           </span>
-          <button onClick={() => addToFavourites(pokemon)}>
+          <button
+            onClick={() => addToFavourites(pokemon)}
+            className={styles.button}
+          >
             Add to Favourites
           </button>
         </div>

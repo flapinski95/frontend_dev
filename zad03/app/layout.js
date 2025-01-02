@@ -1,9 +1,19 @@
-import styles from "./page.module.css"; // Import pliku CSS (CSS Modules)
+// app/layout.js
 
-export default function Layout({ children }) {
+import Navigation from "../components/Navigation";
+import "./globals.css";
+
+export default function RootLayout({ children }) {
   return (
     <html lang="en">
-      <body className={styles.body}>{children}</body>
+      <head>
+        <meta charSet="UTF-8" />
+        <title>Pokémon App</title>
+      </head>
+      <body>
+        <main style={{ paddingBottom: "60px" }}>{children}</main>
+        <Navigation />
+      </body>
     </html>
   );
 }
