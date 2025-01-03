@@ -1,0 +1,38 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html,
+body {
+  width: 100%;
+  height: 100%;
+  background-color: #719778; /* Tło takie samo jak dla .page */
+  overflow-x: hidden; /* Wyłącz poziomy scroll */
+}
+body {
+  margin: 0;
+  font-family: "Funnel Display", sans-serif;
+  font-optical-sizing: auto;
+  font-weight: 600;
+  font-style: normal;
+  background-color: #719778;
+  -webkit-font-smoothing: antialiased;
+  text-shadow: 2px 2px 0 #000, 4px 4px 0 #555;
+}
+
+span {
+  flex: 2;
+}
+img {
+  max-width: 100%;
+  height: auto;
+  flex: 1;
+  image-rendering: crisp-edges;
+  image-rendering: pixelated;
+}
+h2 {
+  color: white;
+  text-transform: uppercase;
+}
